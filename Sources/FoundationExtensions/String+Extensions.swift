@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  String+Extensions.swift
 //  SwiftExtensions
 //
 
