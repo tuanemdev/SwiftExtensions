@@ -9,6 +9,14 @@ public extension Collection {
     var isNotEmpty: Bool { !isEmpty }
 }
 
+public extension Collection where Self: Sendable {
+    func forEachInParallel(_ each: @Sendable (Self.Element) -> Void) {
+        DispatchQueue.concurrentPerform(iterations: count) {
+            each(self[index(startIndex, offsetBy: $0)])
+        }
+    }
+}
+
 public extension RandomAccessCollection where Index: Hashable {
     subscript(safe index: Index) -> Element? {
         Set(indices).contains(index) ? self[index] : nil
