@@ -7,8 +7,14 @@ let package = Package(
     name: "SwiftExtensions",
     products: [
         .library(
-            name: "SwiftExtensions",
-            targets: ["FoundationExtensions", "UIKitExtensions", "SwiftUIExtensions"]),
+            name: "FoundationExtensions",
+            targets: ["FoundationExtensions"]),
+        .library(
+            name: "UIKitExtensions",
+            targets: ["UIKitExtensions"]),
+        .library(
+            name: "SwiftUIExtensions",
+            targets: ["SwiftUIExtensions"]),
     ],
     targets: [
         .target(

@@ -9,8 +9,8 @@ public extension Collection {
     var isNotEmpty: Bool { !isEmpty }
 }
 
-public extension RandomAccessCollection {
+public extension RandomAccessCollection where Index: Hashable {
     subscript(safe index: Index) -> Element? {
-        indices.contains(index) ? self[index] : nil
+        Set(indices).contains(index) ? self[index] : nil
     }
 }
