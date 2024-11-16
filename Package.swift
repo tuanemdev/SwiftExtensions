@@ -9,16 +9,20 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "SwiftExtensions",
-            targets: ["SwiftExtensions"]),
+            targets: ["FoundationExtensions", "UIKitExtensions", "SwiftUIExtensions"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "SwiftExtensions"),
+            name: "FoundationExtensions"),
+        .target(
+            name: "UIKitExtensions"),
+        .target(
+            name: "SwiftUIExtensions"),
         .testTarget(
             name: "SwiftExtensionsTests",
-            dependencies: ["SwiftExtensions"]
+            dependencies: ["FoundationExtensions"]
         ),
     ]
 )
