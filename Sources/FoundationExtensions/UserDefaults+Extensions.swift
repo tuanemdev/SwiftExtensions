@@ -24,7 +24,7 @@ public extension UserDefaults {
         }
     }
     
-    func setObject<T: Codable>(_ object: T, forKey defaultName: String) throw {
+    func setObject<T: Codable>(_ object: T, forKey defaultName: String) throws {
         let data = try JSONEncoder().encode(object)
         set(data, forKey: defaultName)
     }

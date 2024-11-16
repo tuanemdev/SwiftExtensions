@@ -3,6 +3,8 @@
 //  SwiftExtensions
 //
 
+import UIKit
+
 public extension UICollectionView {
     func registerCell(type: UICollectionViewCell.Type) {
         register(UINib(nibName: type.identifier, bundle: nil), forCellWithReuseIdentifier: type.identifier)
