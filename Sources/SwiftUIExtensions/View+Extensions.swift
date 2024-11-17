@@ -40,3 +40,30 @@ public extension View {
         clipShape( RoundedCorner(corners: corners, radius: radius) )
     }
 }
+
+// MARK: - RemoveBackgroundColor
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+struct RemoveBackgroundColor: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIView {
+        UIView()
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {
+        Task { @MainActor in
+            uiView.superview?.superview?.backgroundColor = .clear
+        }
+    }
+}
+
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+extension View {
+    func removeBackground(_ style: AnyShapeStyle) -> some View {
+        background(RemoveBackgroundColor())
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background {
+                Rectangle()
+                    .fill(style)
+                    .ignoresSafeArea(.container, edges: .all)
+            }
+    }
+}
