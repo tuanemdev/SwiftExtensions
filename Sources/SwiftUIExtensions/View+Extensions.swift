@@ -16,6 +16,24 @@ public extension View {
         }
     }
     
+    @ViewBuilder
+    func `if`<M>(_ condition: @autoclosure () -> Bool, _ modifier: M) -> some View where M: ViewModifier {
+        if condition() {
+            self.modifier(modifier)
+        } else {
+            self
+        }
+    }
+    
+    @ViewBuilder
+    func `if`<M1, M2>(_ condition: @autoclosure () -> Bool, _ trueModifier: M1, _ falseModifier: M2) -> some View where M1: ViewModifier, M2: ViewModifier {
+        if condition() {
+            self.modifier(trueModifier)
+        } else {
+            self.modifier(falseModifier)
+        }
+    }
+    
     @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
     func reverseMask<Content: View>(_ content: () -> Content) -> some View {
         self.overlay { content().mask(self) }
