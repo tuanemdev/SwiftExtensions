@@ -6,6 +6,10 @@
 import Foundation
 
 public extension Optional {
+    var isNil: Bool {
+        return self == nil
+    }
+    
     func unwrapOr(_ defaultValue: Wrapped) -> Wrapped {
         self ?? defaultValue
     }
